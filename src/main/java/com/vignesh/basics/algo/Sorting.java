@@ -1,4 +1,4 @@
-package com.scb.dqmf.playground.algo;
+package com.vignesh.basics.algo;
 
 import java.util.Arrays;
 
