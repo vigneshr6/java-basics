@@ -17,6 +17,12 @@ public class ReverseLinkedList {
         }
     }
 
+    private static MyLinkedList<Integer> getReverseList(MyLinkedList<Integer> list) {
+        MyLinkedList<Integer> reverse = new MyLinkedList<>();
+        reverseRecursive(reverse, list.getLast());
+        return reverse;
+    }
+
     public static void main(String[] args) {
         MyLinkedList<Integer> list = new MyLinkedList<>();
         list.add(1);
@@ -25,8 +31,7 @@ public class ReverseLinkedList {
         list.add(4);
         list.add(5);
         System.out.println("List : " + Arrays.toString(list.toArray()));
-        MyLinkedList<Integer> reverse = new MyLinkedList<>();
-        reverseRecursive(reverse, list.getLast());
+        MyLinkedList<Integer> reverse = getReverseList(list);
         System.out.println("Reverse : " + Arrays.toString(reverse.toArray()));
     }
 }
