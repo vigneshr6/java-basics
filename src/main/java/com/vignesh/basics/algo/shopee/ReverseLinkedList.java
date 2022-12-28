@@ -3,7 +3,6 @@ package com.vignesh.basics.algo.shopee;
 import com.vignesh.basics.datastructure.MyLinkedList;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 
 public class ReverseLinkedList {
 
