@@ -30,11 +30,11 @@ public class TopView implements Serializable {
         XAxis xa = new XAxis(0, 0, root);
         nodes.push(xa);
         SortedSet<XAxis> result = new TreeSet<>();
-        bds(result, nodes, 0, 0);
+        breadthFirstSearch(result, nodes, 0, 0);
         System.out.println(result.toString());
     }
 
-    private static void bds(SortedSet<XAxis> result, Stack<XAxis> nodes, int y, int x) {
+    private static void breadthFirstSearch(SortedSet<XAxis> result, Stack<XAxis> nodes, int y, int x) {
         if (nodes.isEmpty()) {
             return;
         }
