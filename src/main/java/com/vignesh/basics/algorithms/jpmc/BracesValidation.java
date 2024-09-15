@@ -1,4 +1,4 @@
-package com.vignesh.basics.algo.jpmc;
+package com.vignesh.basics.algorithms.jpmc;
 
 import java.util.Stack;
 import java.util.stream.Collectors;

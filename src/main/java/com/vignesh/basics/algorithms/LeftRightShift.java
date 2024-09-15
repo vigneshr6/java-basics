@@ -1,4 +1,4 @@
-package com.vignesh.basics.algo;
+package com.vignesh.basics.algorithms;
 
 public class LeftRightShift {
 

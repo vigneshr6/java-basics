@@ -1,4 +1,4 @@
-package com.vignesh.basics.algo.paypal;
+package com.vignesh.basics.algorithms.paypal;
 
 import java.util.ArrayList;
 import java.util.List;

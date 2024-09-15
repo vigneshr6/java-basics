@@ -1,4 +1,4 @@
-package com.vignesh.basics.algo.paypal;
+package com.vignesh.basics.algorithms.paypal;
 
 public class BinarySearch {
     public static void main(String[] args) {

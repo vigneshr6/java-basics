@@ -1,4 +1,4 @@
-package com.vignesh.basics.algo.shopee;
+package com.vignesh.basics.algorithms.shopee;
 
 import com.vignesh.basics.datastructure.MyLinkedList;
 
