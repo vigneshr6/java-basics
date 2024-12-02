@@ -29,8 +29,10 @@ dependencies {
 	testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 	compileOnly "org.projectlombok:lombok:${lombokVersion}"
 	testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-tasks.named('test') {
+test {
 	useJUnitPlatform()
 }
