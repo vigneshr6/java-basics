@@ -1,17 +1,18 @@
-package com.vignesh.basics.algorithms;
+package com.vignesh.basics.concurrency;
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class ProducerConsumer {
-    public static void main(String[] args) {
+public class ProducerConsumerWait {
+    public static void main(String[] args) throws InterruptedException {
         Queue<Integer> q = new LinkedList<>();
         AtomicBoolean done = new AtomicBoolean(false);
-        Runnable producer = getProducer(q, done);
-        Runnable consumer = getConsumer(q, done);
-        new Thread(producer).start();
-        new Thread(consumer).start();
+        new Thread(getProducer(q, done)).start();
+        Thread consumer = new Thread(getConsumer(q, done));
+        consumer.start();
+        consumer.join();
+        System.exit(0);
     }
 
     private static Runnable getConsumer(Queue<Integer> q, AtomicBoolean done) {
@@ -21,7 +22,7 @@ public class ProducerConsumer {
                 while (true) {
                     synchronized (q) {
                         if (q.isEmpty()) {
-//                    System.out.println("Consumer : q is empty. so wait");
+                            //q is empty. so wait
                             if (done.get()) {
                                 return;
                             }
@@ -30,7 +31,7 @@ public class ProducerConsumer {
                         Integer val = q.poll();
                         System.out.println("\t\tConsumed : " + val);
                         if (q.size() == 4) {
-//                    System.out.println("Consumer : q would have been full. so notify");
+                            //q would have been full. so notify
                             q.notify();
                         }
                     }
@@ -50,13 +51,13 @@ public class ProducerConsumer {
                 for (int i = 1; i <= 20; i++) {
                     synchronized (q) {
                         if (q.size() == 5) {
-//                    System.out.println("Producer : q is full. so wait");
+                            //q is full. so wait
                             q.wait();
                         }
                         q.add(i);
                         System.out.println("Produced : " + i);
                         if (q.size() == 1) {
-//                    System.out.println("Producer : q would have been empty. so notify");
+                            //q would have been empty. so notify
                             q.notify();
                         }
                     }

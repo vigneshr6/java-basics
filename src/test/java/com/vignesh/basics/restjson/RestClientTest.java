@@ -19,10 +19,8 @@ import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestPropertySource("/jsonapp.properties")
-//@EnableConfigurationProperties(ClientProperties.class)
 public class RestClientTest {
 
     @Autowired
@@ -36,8 +34,8 @@ public class RestClientTest {
                 CompletableFuture.supplyAsync(() ->
                                 restTemplate.getForEntity(getUserURL(id), User.class).getBody()
                         , executorService)
-        ).collect(Collectors.toList());
-        CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()]));
+        ).toList();
+        CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
         final List<User> users = futures.stream().map(f -> {
             try {
                 return f.get();
@@ -45,15 +43,17 @@ public class RestClientTest {
                 e.printStackTrace();
             }
             return null;
-        }).collect(Collectors.toList());
-        Collections.sort(users, Comparator.comparing(User::getName));
-        final int maxNameLen = users.stream().mapToInt(data -> data.getName().length()).max().orElse(0) + 5;
-        final int maxEmailLen = users.stream().mapToInt(data -> String.valueOf(data.getEmail()).length()).max().orElse(0);
+        }).sorted(Comparator.comparing(User::name))
+                        .toList();
+
+        final int maxNameLen = users.stream().mapToInt(data -> data.name().length()).max().orElse(0) + 5;
+        final int maxEmailLen = users.stream().mapToInt(data -> String.valueOf(data.email()).length()).max().orElse(0);
+
         String box = String.format("+%s+", "-".repeat(maxNameLen + maxEmailLen + 5));
         System.out.println(box);
         IntStream.range(0, users.size()).forEach(i -> {
             final User data = users.get(i);
-            System.out.printf("| %-" + maxNameLen + "s | %-" + maxEmailLen + "s |\n", data.getName(), data.getEmail());
+            System.out.printf("| %-" + maxNameLen + "s | %-" + maxEmailLen + "s |\n", data.name(), data.email());
             if (i < users.size() - 1) {
                 System.out.println("-".repeat(maxNameLen + maxEmailLen + 7));
             }
