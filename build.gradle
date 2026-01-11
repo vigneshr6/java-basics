@@ -27,6 +27,7 @@ dependencies {
 	implementation "io.github.resilience4j:resilience4j-cache:${resilience4jVersion}"
 	implementation "io.github.resilience4j:resilience4j-timelimiter:${resilience4jVersion}"
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.platform:junit-platform-suite'
 
 	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 	testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
