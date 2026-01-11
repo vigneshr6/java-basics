@@ -16,6 +16,8 @@ repositories {
 dependencies {
 	implementation 'org.apache.httpcomponents:httpclient:4.5'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.kafka:spring-kafka'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation "io.github.resilience4j:resilience4j-circuitbreaker:${resilience4jVersion}"
@@ -30,6 +32,7 @@ dependencies {
 	testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 	compileOnly "org.projectlombok:lombok:${lombokVersion}"
 	testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testImplementation 'com.h2database:h2'
 }
 
 test {
