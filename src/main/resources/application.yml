@@ -1,8 +1,35 @@
 spring:
+  ssl:
+    bundle:
+      jks:
+        kafka-client:
+          key:
+            alias: "localhost"
+          keystore:
+            location: classpath:client.p12
+            password: mypassword
+            type: PKCS12
+          trust:store:
+            location: classpath:truststore.p12
+            password: mypassword
+            type: PKCS12
   kafka:
-    bootstrap-servers: broker:9092
+    admin:
+      auto-create: false
+    ssl:
+      bundle: kafka-client
+    properties:
+      security.protocol: SSL
+    bootstrap-servers: localhost:9094 #for ssl
     consumer:
       group-id: my-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+logging:
+  level:
+#    org.springframework.boot.ssl: DEBUG
+    root: INFO
