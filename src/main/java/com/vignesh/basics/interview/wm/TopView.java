@@ -1,7 +1,10 @@
 package com.vignesh.basics.interview.wm;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.Objects;
+import java.util.SortedSet;
+import java.util.Stack;
+import java.util.TreeSet;
 
 /*
 * Top view of a BST {4,3,5,1,6,2,7}

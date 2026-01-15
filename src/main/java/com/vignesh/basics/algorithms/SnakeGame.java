@@ -1,6 +1,8 @@
 package com.vignesh.basics.algorithms;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Scanner;
 
 public class SnakeGame {
     public static void main(String[] args) {
